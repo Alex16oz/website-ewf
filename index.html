@@ -14,7 +14,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
         .hero-bg {
-            background: linear-gradient(rgba(1, 23, 46, 0.7), rgba(1, 23, 46, 0.7)), url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            background: linear-gradient(rgba(1, 23, 46, 0.8), rgba(1, 23, 46, 0.8)), url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
         }
         .glassmorphic-nav {
             background-color: rgba(255, 255, 255, 0.8);
@@ -23,16 +23,16 @@
             border-bottom: 1px solid rgba(200, 200, 200, 0.3);
         }
         .section-title {
-            @apply text-4xl font-extrabold text-gray-800 mb-3;
+            @apply text-3xl md:text-4xl font-extrabold text-gray-800 mb-3;
         }
         .section-subtitle {
-            @apply text-lg text-gray-500 mb-12 max-w-2xl mx-auto;
+            @apply text-base md:text-lg text-gray-500 mb-10 md:mb-12 max-w-2xl mx-auto;
         }
         .card {
             @apply bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
         }
         .tab-button {
-            @apply px-6 py-3 font-semibold text-gray-500 transition-all duration-300 border-b-4 border-transparent;
+            @apply px-4 md:px-6 py-3 font-semibold text-gray-500 transition-all duration-300 border-b-4 border-transparent text-sm md:text-base;
         }
         .tab-button.active {
             @apply text-blue-600 border-blue-600;
@@ -44,7 +44,7 @@
             @apply block;
         }
         .calc-code {
-            @apply block bg-gray-900 text-white p-4 rounded-lg mt-2 text-sm font-mono whitespace-pre-wrap;
+            @apply block bg-gray-900 text-white p-3 md:p-4 rounded-lg mt-2 text-xs md:text-sm font-mono whitespace-pre-wrap;
         }
         .timeline-item::before {
             content: '';
@@ -55,7 +55,7 @@
             background-color: white;
             border: 4px solid #2563EB; /* blue-600 */
             top: 0;
-            left: -42px;
+            left: -1.9rem; /* Adjusted for mobile */
             z-index: 1;
         }
         .timeline-path::before {
@@ -64,78 +64,129 @@
             width: 2px;
             height: 100%;
             background-color: #BFDBFE; /* blue-200 */
-            left: -33px;
+            left: -1.4rem; /* Adjusted for mobile */
             top: 0;
         }
-        /* Custom table styles for detail */
-        .spec-table th, .spec-table td {
-            @apply p-3 text-xs text-left border-b border-gray-200;
+        /* Responsive Table Styles */
+        @media (max-width: 768px) {
+            .responsive-table thead {
+                display: none;
+            }
+            .responsive-table tr {
+                display: block;
+                margin-bottom: 1rem;
+                border: 1px solid #e5e7eb;
+                border-radius: 0.75rem;
+                box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+                overflow: hidden;
+            }
+            .responsive-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.75rem 1rem;
+                text-align: right;
+                border-bottom: 1px solid #f3f4f6;
+            }
+            .responsive-table td:last-child {
+                border-bottom: 0;
+            }
+            .responsive-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                text-align: left;
+                margin-right: 1rem;
+                color: #1f2937;
+            }
         }
-        .spec-table thead th {
-            @apply bg-gray-100 font-semibold text-gray-700 uppercase tracking-wider;
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
         }
-        .spec-table tbody tr:hover {
-            @apply bg-blue-50;
+        .mobile-menu-overlay a {
+            font-size: 1.5rem;
+            color: white;
+            padding: 1rem;
+            transition: color 0.3s ease;
         }
-        .spec-table td:first-child {
-            @apply font-semibold text-gray-800;
+        .mobile-menu-overlay a:hover {
+            color: #3b82f6;
+        }
+        .close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            color: white;
         }
     </style>
 </head>
 <body class="bg-gray-50">
 
     <header class="glassmorphic-nav sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#" class="text-3xl font-bold text-gray-800 flex items-center">
-                <i class="fas fa-chart-line text-blue-600 mr-3"></i>
+        <nav class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl md:text-3xl font-bold text-gray-800 flex items-center">
+                <i class="fas fa-chart-line text-blue-600 mr-2 md:mr-3"></i>
                 <span class="hidden sm:inline">Equityworld Futures</span>
                 <span class="sm:hidden">EWF</span>
             </a>
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#tentang" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Tentang Kami</a>
+                <a href="#tentang" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Tentang</a>
                 <a href="#produk" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Produk</a>
                 <a href="#layanan" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Layanan</a>
-                <a href="#memulai" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Cara Memulai</a>
+                <a href="#memulai" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Memulai</a>
                 <a href="#kontak" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Kontak</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 border-t border-gray-200">
-            <a href="#tentang" class="block py-2 text-gray-600 hover:text-blue-600">Tentang Kami</a>
-            <a href="#produk" class="block py-2 text-gray-600 hover:text-blue-600">Produk</a>
-            <a href="#layanan" class="block py-2 text-gray-600 hover:text-blue-600">Layanan</a>
-            <a href="#memulai" class="block py-2 text-gray-600 hover:text-blue-600">Cara Memulai</a>
-            <a href="#kontak" class="block py-2 text-gray-600 hover:text-blue-600">Kontak</a>
-        </div>
     </header>
 
+    <div id="mobile-menu" class="mobile-menu-overlay hidden">
+        <button id="close-menu-button" class="close-btn">&times;</button>
+        <a href="#tentang">Tentang</a>
+        <a href="#produk">Produk</a>
+        <a href="#layanan">Layanan</a>
+        <a href="#memulai">Memulai</a>
+        <a href="#kontak">Kontak</a>
+    </div>
+
     <section class="hero-bg text-white">
-        <div class="container mx-auto px-6 py-32 md:py-48 text-center">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">PT. EQUITYWORLD FUTURES</h1>
-            <p class="text-xl md:text-2xl mb-8 text-blue-100">Partner Utama Anda dalam Perdagangan Berjangka</p>
-            <div class="flex justify-center items-center space-x-4 mb-10">
-                <div class="text-center bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg">
-                    <p class="font-semibold text-blue-200">Anggota Resmi dari:</p>
-                    <p class="text-lg font-bold">Bursa Berjangka Jakarta & Kliring Berjangka Indonesia</p>
+        <div class="container mx-auto px-4 sm:px-6 py-24 md:py-40 text-center">
+            <h1 class="text-3xl md:text-6xl font-extrabold mb-4 leading-tight">PT. EQUITYWORLD FUTURES</h1>
+            <p class="text-lg md:text-2xl mb-8 text-blue-100">Partner Utama Anda dalam Perdagangan Berjangka</p>
+            <div class="flex justify-center items-center mb-10">
+                <div class="text-center bg-white/10 backdrop-blur-sm px-4 py-3 rounded-lg">
+                    <p class="font-semibold text-blue-200 text-sm md:text-base">Anggota Resmi dari:</p>
+                    <p class="text-base md:text-lg font-bold">Bursa Berjangka Jakarta & Kliring Berjangka Indonesia</p>
                 </div>
             </div>
-            <a href="#memulai" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/50">
+            <a href="#memulai" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 md:py-4 md:px-10 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/50">
                 Mulai Trading Sekarang <i class="fas fa-arrow-right ml-2"></i>
             </a>
         </div>
     </section>
 
-    <section id="tentang" class="py-24">
-        <div class="container mx-auto px-6">
+    <section id="tentang" class="py-20 md:py-24">
+        <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center">
                 <h2 class="section-title">Legalitas Terjamin dan Terpercaya</h2>
                 <p class="section-subtitle">Beroperasi dengan transparansi penuh dan kepatuhan terhadap regulasi yang berlaku di Indonesia.</p>
             </div>
-            <div class="max-w-5xl mx-auto bg-white p-8 sm:p-12 rounded-2xl shadow-xl">
-                <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center"><i class="fas fa-balance-scale text-blue-600 mr-3"></i>Landasan Hukum Perusahaan</h3>
-                <ol class="list-decimal list-inside text-gray-600 space-y-3">
+            <div class="max-w-5xl mx-auto bg-white p-6 sm:p-10 rounded-2xl shadow-xl">
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center"><i class="fas fa-balance-scale text-blue-600 mr-3"></i>Landasan Hukum</h3>
+                <ol class="list-decimal list-inside text-gray-600 space-y-4 text-sm md:text-base">
                     <li>Akta Pendirian Perseroan Terbatas, Nomor : 01 tanggal 2 Juli 2005 oleh Notaris Tan Susy, SH, PT. Goldmany Futures.</li>
                     <li>Pengesahan Departemen Hukum dan HAM Nomor: C-29097 HT.01.010 TH.2005</li>
                     <li>Akta Perubahan Nama PT. Goldmany Futures menjadi PT. Equityworld Futures Nomor: 11 tanggal 4 November 2008, oleh Notaris Tan Susy, SH.</li>
@@ -152,18 +203,18 @@
         </div>
     </section>
 
-    <section id="produk" class="py-24 bg-gray-100">
-        <div class="container mx-auto px-6">
+    <section id="produk" class="py-20 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center">
                 <h2 class="section-title">Sistem Perdagangan Alternatif (SPA)</h2>
-                <p class="section-subtitle">Berdasarkan Undang-undang Nomor 10 Tahun 2011 tentang perubahan atas Undang-undang nomor 32 tahun 1997 tentang Perdagangan Berjangka Komoditi dijelaskan bahwa Sistem Perdagangan Alternatif (SPA) adalah sistem perdagangan yang berkaitan dengan jual beli Kontrak Derivatif selain Kontrak Berjangka dan Kontrak Derivatif Syariah, yang dilakukan di luar Bursa Berjangka.</p>
+                <p class="section-subtitle">SPA adalah sistem perdagangan untuk jual beli Kontrak Derivatif selain Kontrak Berjangka dan Syariah, yang dilakukan di luar Bursa Berjangka.</p>
             </div>
              <div class="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
-                <div class="p-8">
-                    <h3 class="text-3xl font-bold text-gray-800 mb-6 text-center">Produk SPA</h3>
+                <div class="p-6 md:p-8">
+                    <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">Produk SPA</h3>
                 </div>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left">
+                    <table class="w-full text-left responsive-table">
                         <thead class="bg-gray-50 border-b border-t border-gray-200">
                             <tr>
                                 <th class="p-4 font-semibold text-gray-600">Kode Kontrak</th>
@@ -171,17 +222,17 @@
                                 <th class="p-4 font-semibold text-gray-600">Jenis Kontrak</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200">
-                            <tr class="hover:bg-gray-50"><td class="p-4 font-medium text-gray-800">HKK50_BBJ & HKK5U_BBJ</td><td class="p-4 text-gray-600">Hong Kong Index Futures at HKEx</td><td class="p-4 text-gray-600">Kontrak Gulir Berkala Indeks Saham Hong Kong</td></tr>
-                            <tr class="hover:bg-gray-50"><td class="p-4 font-medium text-gray-800">JPK50_BBJ & JPK5U_BBJ</td><td class="p-4 text-gray-600">Japan Index Futures at SGX</td><td class="p-4 text-gray-600">Kontrak Gulir Berkala Indeks Saham Jepang</td></tr>
-                            <tr class="hover:bg-gray-50"><td class="p-4 font-medium text-gray-800">XUL10 & XULF</td><td class="p-4 text-gray-600">Spot Gold</td><td class="p-4 text-gray-600">Kontrak Gulir Harian Emas Loco London</td></tr>
-                            <tr class="hover:bg-gray-50"><td class="p-4 font-medium text-gray-800">XAG10_BBJ & XAGF_BBJ</td><td class="p-4 text-gray-600">Spot Silver</td><td class="p-4 text-gray-600">Kontrak Gulir Harian Perak Loco London</td></tr>
-                            <tr class="hover:bg-gray-50"><td class="p-4 font-medium text-gray-800">BCO10_BBJ & BCOF_BBJ</td><td class="p-4 text-gray-600">BCO at ICE</td><td class="p-4 text-gray-600">Kontrak Gulir Berkala Brent Crude Oil</td></tr>
-                            <tr class="hover:bg-gray-50"><td class="p-4 font-medium text-gray-800">GU1010_BBJ & GU10F_BBJ</td><td class="p-4 text-gray-600">GBP/USD</td><td class="p-4 text-gray-600">Kontrak Gulir Harian Harga Spot Great Britain Pound Sterling GBP terhadap US Dollar (USD)</td></tr>
-                            <tr class="hover:bg-gray-50"><td class="p-4 font-medium text-gray-800">EU1010_BBJ & EU10F_BBJ</td><td class="p-4 text-gray-600">EUR/USD</td><td class="p-4 text-gray-600">Kontrak Gulir Harian Harga Spot Euro (EUR) terhadap US Dollar (USD)</td></tr>
-                            <tr class="hover:bg-gray-50"><td class="p-4 font-medium text-gray-800">AU1010_BBJ & AU10F_BBJ</td><td class="p-4 text-gray-600">AUD/USD</td><td class="p-4 text-gray-600">Kontrak Gulir Harian Harga Spot Australian Dollar (AUD) terhadap US Dollar (USD)</td></tr>
-                            <tr class="hover:bg-gray-50"><td class="p-4 font-medium text-gray-800">UC1010_BBJ & UC10F_BBJ</td><td class="p-4 text-gray-600">USD/CHF</td><td class="p-4 text-gray-600">Kontrak Gulir Harian Harga Spot US Dollar (USD) terhadap Swiss Franc (CHF)</td></tr>
-                            <tr class="hover:bg-gray-50"><td class="p-4 font-medium text-gray-800">UJ1010_BBJ & UJ10F_BBJ</td><td class="p-4 text-gray-600">USD/JPY</td><td class="p-4 text-gray-600">Kontrak Gulir Harian Harga Spot US Dollar (USD) terhadap Japanese Yen (JPY)</td></tr>
+                        <tbody class="divide-y divide-gray-200 md:divide-y-0">
+                            <tr><td data-label="Kode" class="font-medium text-gray-800">HKK50_BBJ & HKK5U_BBJ</td><td data-label="Dasar" class="text-gray-600">Hong Kong Index Futures at HKEx</td><td data-label="Jenis" class="text-gray-600">Kontrak Gulir Berkala Indeks Saham Hong Kong</td></tr>
+                            <tr><td data-label="Kode" class="font-medium text-gray-800">JPK50_BBJ & JPK5U_BBJ</td><td data-label="Dasar" class="text-gray-600">Japan Index Futures at SGX</td><td data-label="Jenis" class="text-gray-600">Kontrak Gulir Berkala Indeks Saham Jepang</td></tr>
+                            <tr><td data-label="Kode" class="font-medium text-gray-800">XUL10 & XULF</td><td data-label="Dasar" class="text-gray-600">Spot Gold</td><td data-label="Jenis" class="text-gray-600">Kontrak Gulir Harian Emas Loco London</td></tr>
+                            <tr><td data-label="Kode" class="font-medium text-gray-800">XAG10_BBJ & XAGF_BBJ</td><td data-label="Dasar" class="text-gray-600">Spot Silver</td><td data-label="Jenis" class="text-gray-600">Kontrak Gulir Harian Perak Loco London</td></tr>
+                            <tr><td data-label="Kode" class="font-medium text-gray-800">BCO10_BBJ & BCOF_BBJ</td><td data-label="Dasar" class="text-gray-600">BCO at ICE</td><td data-label="Jenis" class="text-gray-600">Kontrak Gulir Berkala Brent Crude Oil</td></tr>
+                            <tr><td data-label="Kode" class="font-medium text-gray-800">GU1010_BBJ & GU10F_BBJ</td><td data-label="Dasar" class="text-gray-600">GBP/USD</td><td data-label="Jenis" class="text-gray-600">Kontrak Gulir Harian Harga Spot GBP terhadap USD</td></tr>
+                            <tr><td data-label="Kode" class="font-medium text-gray-800">EU1010_BBJ & EU10F_BBJ</td><td data-label="Dasar" class="text-gray-600">EUR/USD</td><td data-label="Jenis" class="text-gray-600">Kontrak Gulir Harian Harga Spot EUR terhadap USD</td></tr>
+                            <tr><td data-label="Kode" class="font-medium text-gray-800">AU1010_BBJ & AU10F_BBJ</td><td data-label="Dasar" class="text-gray-600">AUD/USD</td><td data-label="Jenis" class="text-gray-600">Kontrak Gulir Harian Harga Spot AUD terhadap USD</td></tr>
+                            <tr><td data-label="Kode" class="font-medium text-gray-800">UC1010_BBJ & UC10F_BBJ</td><td data-label="Dasar" class="text-gray-600">USD/CHF</td><td data-label="Jenis" class="text-gray-600">Kontrak Gulir Harian Harga Spot USD terhadap CHF</td></tr>
+                            <tr><td data-label="Kode" class="font-medium text-gray-800">UJ1010_BBJ & UJ10F_BBJ</td><td data-label="Dasar" class="text-gray-600">USD/JPY</td><td data-label="Jenis" class="text-gray-600">Kontrak Gulir Harian Harga Spot USD terhadap JPY</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -189,82 +240,70 @@
         </div>
     </section>
     
-    <section id="details" class="py-24">
-        <div class="container mx-auto px-6">
+    <section id="details" class="py-20 md:py-24">
+        <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center">
                 <h2 class="section-title">Detail Perdagangan</h2>
-                <p class="section-subtitle">Pahami spesifikasi produk dan pelajari ilustrasi perhitungan transaksi untuk memaksimalkan potensi trading Anda.</p>
+                <p class="section-subtitle">Pahami spesifikasi dan ilustrasi perhitungan untuk memaksimalkan potensi trading Anda.</p>
             </div>
             <div class="max-w-7xl mx-auto">
                 <div class="flex justify-center border-b border-gray-200">
                     <nav class="-mb-px flex space-x-2" aria-label="Tabs">
-                        <button class="tab-button active" data-tab="specs">Spesifikasi Produk</button>
-                        <button class="tab-button" data-tab="calc">Ilustrasi Perhitungan</button>
+                        <button class="tab-button active" data-tab="specs">Spesifikasi</button>
+                        <button class="tab-button" data-tab="calc">Ilustrasi</button>
                     </nav>
                 </div>
     
                 <div id="specs" class="tab-content active mt-8">
-                     <div class="bg-white p-6 rounded-2xl shadow-xl overflow-x-auto">
-                        <h4 class="font-bold text-2xl mb-6 text-gray-800">Tabel SPA: Indeks & Komoditas</h4>
-                        <table class="w-full min-w-max spec-table">
-                            <thead><tr><th>Spesifikasi</th><th>Indeks HK (HKK)</th><th>Indeks JP (JPK)</th><th>Emas (XUL)</th><th>Perak (XAG)</th><th>Minyak (BCO)</th></tr></thead>
-                            <tbody>
-                                <tr><td>Trade Code</td><td>HKK50_BBJ (Fixed)<br>HKK5U_BBJ (Floating)</td><td>JPK50_BBJ (Fixed)<br>JPK5U_BBJ (Floating)</td><td>XUL10 (Fixed)<br>XULF (Floating)</td><td>XAG10_BBJ (Fixed)<br>XAGF_BBJ (Floating)</td><td>BCO10_BBJ (Fixed)<br>BCOF_BBJ (Floating)</td></tr>
-                                <tr><td>Contract Size</td><td>USD 5/point</td><td>USD 5/point</td><td>100 Troy Ounce</td><td>5.000 Troy Ounce</td><td>USD 1.000 per Barrel</td></tr>
-                                <tr><td>Trading Hours</td><td>Sen-Jum:<br>08.15-11.00<br>12.00-15.30<br>16.15-02.00 WIB</td><td>Sen-Jum:<br>06.30-13.25<br>14.10-03.45 WIB</td><td>Sen-Jum:<br>Summer 06.00-03.30<br>Winter 06.00-04.30 WIB</td><td>Sen-Jum:<br>Summer 06.00-03.30<br>Winter 06.00-04.30 WIB</td><td>Sen-Jum:<br>07.00-03.45 WIB</td></tr>
-                                <tr><td>Initial Margin (Day)</td><td>USD 1,000/lot</td><td>USD 1,000/lot</td><td>USD 1,000/lot</td><td>USD 1,000/lot</td><td>USD 1,000/lot</td></tr>
-                                <tr><td>Initial Margin (O/N)</td><td>USD 2,000/lot</td><td>USD 2,000/lot</td><td>USD 2,000/lot</td><td>USD 2,000/lot</td><td>USD 2,000/lot</td></tr>
-                                <tr><td>Maintenance Margin</td><td>70% of Initial Margin</td><td>70% of Initial Margin</td><td>70% of Initial Margin</td><td>70% of Initial Margin</td><td>70% of Initial Margin</td></tr>
-                                <tr><td>Auto Liquidation</td><td>30% of Initial Margin</td><td>30% of Initial Margin</td><td>30% of Initial Margin</td><td>30% of Initial Margin</td><td>30% of Initial Margin</td></tr>
-                                <tr><td>Facility Fee</td><td>USD 15/Lot/Side</td><td>USD 15/Lot/Side</td><td>USD 15/Lot/Side</td><td>USD 15/Lot/Side</td><td>USD 15/Lot/Side</td></tr>
-                                <tr><td>VAT (Fee)</td><td>11% of Facility Fee</td><td>11% of Facility Fee</td><td>11% of Facility Fee</td><td>11% of Facility Fee</td><td>11% of Facility Fee</td></tr>
-                                <tr><td>Rollover Fee (Buy/Sell)</td><td>USD 3/lot/night</td><td>USD 2/lot/night</td><td>USD 5/lot/night</td><td>USD 5/lot/night</td><td>USD 5/lot/night</td></tr>
-                                <tr><td>VAT (Rollover)</td><td>11% of Rollover Facility</td><td>11% of Rollover Facility</td><td>11% of Rollover Facility</td><td>11% of Rollover Facility</td><td>11% of Rollover Facility</td></tr>
-                                <tr><td>Min. Price Movement</td><td>1 Point</td><td>5 Points</td><td>USD 0.01/Troy Ounce</td><td>USD 0,001/Troy Ounce</td><td>USD 0,01/Barrel</td></tr>
-                                <tr><td>Spread Quote (Min)</td><td>8 point/side</td><td>10 point/side</td><td>USD 0.40/Troy Ounce/Side</td><td>USD 0.015/Troy Ounce/Side</td><td>0.10 pips/Barrel/Side</td></tr>
-                                <tr><td>Range for Limit Order</td><td>20-500 Points</td><td>20-500 Points</td><td>USD 6 - USD 20</td><td>200-2000 Points/pips</td><td>2.00-20.00 Points/pips</td></tr>
-                            </tbody>
-                        </table>
+                     <div class="bg-white p-4 md:p-6 rounded-2xl shadow-xl">
+                        <h4 class="font-bold text-xl md:text-2xl mb-6 text-gray-800">SPA: Indeks & Komoditas</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full min-w-max responsive-table text-xs md:text-sm">
+                                <thead><tr><th>Spesifikasi</th><th>Indeks HK (HKK)</th><th>Indeks JP (JPK)</th><th>Emas (XUL)</th><th>Perak (XAG)</th><th>Minyak (BCO)</th></tr></thead>
+                                <tbody>
+                                    <tr><td data-label="Spesifikasi">Trade Code</td><td data-label="HKK">HKK50_BBJ (Fixed)<br>HKK5U_BBJ (Floating)</td><td data-label="JPK">JPK50_BBJ (Fixed)<br>JPK5U_BBJ (Floating)</td><td data-label="XUL">XUL10 (Fixed)<br>XULF (Floating)</td><td data-label="XAG">XAG10_BBJ (Fixed)<br>XAGF_BBJ (Floating)</td><td data-label="BCO">BCO10_BBJ (Fixed)<br>BCOF_BBJ (Floating)</td></tr>
+                                    <tr><td data-label="Spesifikasi">Contract Size</td><td data-label="HKK">USD 5/point</td><td data-label="JPK">USD 5/point</td><td data-label="XUL">100 Troy Ounce</td><td data-label="XAG">5.000 Troy Ounce</td><td data-label="BCO">USD 1.000 per Barrel</td></tr>
+                                    <tr><td data-label="Spesifikasi">Trading Hours</td><td data-label="HKK">Sen-Jum:<br>08.15-11.00<br>12.00-15.30<br>16.15-02.00 WIB</td><td data-label="JPK">Sen-Jum:<br>06.30-13.25<br>14.10-03.45 WIB</td><td data-label="XUL">Sen-Jum:<br>Summer 06.00-03.30<br>Winter 06.00-04.30 WIB</td><td data-label="XAG">Sen-Jum:<br>Summer 06.00-03.30<br>Winter 06.00-04.30 WIB</td><td data-label="BCO">Sen-Jum:<br>07.00-03.45 WIB</td></tr>
+                                    <tr><td data-label="Spesifikasi">Initial Margin (Day)</td><td data-label="HKK">USD 1,000/lot</td><td data-label="JPK">USD 1,000/lot</td><td data-label="XUL">USD 1,000/lot</td><td data-label="XAG">USD 1,000/lot</td><td data-label="BCO">USD 1,000/lot</td></tr>
+                                    <tr><td data-label="Spesifikasi">Initial Margin (O/N)</td><td data-label="HKK">USD 2,000/lot</td><td data-label="JPK">USD 2,000/lot</td><td data-label="XUL">USD 2,000/lot</td><td data-label="XAG">USD 2,000/lot</td><td data-label="BCO">USD 2,000/lot</td></tr>
+                                    <tr><td data-label="Spesifikasi">Rollover Fee (Buy/Sell)</td><td data-label="HKK">USD 3/lot/night</td><td data-label="JPK">USD 2/lot/night</td><td data-label="XUL">USD 5/lot/night</td><td data-label="XAG">USD 5/lot/night</td><td data-label="BCO">USD 5/lot/night</td></tr>
+                                    <tr><td data-label="Spesifikasi">Min. Price Movement</td><td data-label="HKK">1 Point</td><td data-label="JPK">5 Points</td><td data-label="XUL">USD 0.01/Troy Ounce</td><td data-label="XAG">USD 0,001/Troy Ounce</td><td data-label="BCO">USD 0,01/Barrel</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
                      </div>
 
-                     <div class="bg-white p-6 rounded-2xl shadow-xl overflow-x-auto mt-8">
-                        <h4 class="font-bold text-2xl mb-6 text-gray-800">Tabel SPA: Forex</h4>
-                        <table class="w-full min-w-max spec-table">
-                            <thead><tr><th>Spesifikasi</th><th>GBP/USD (GU)</th><th>EUR/USD (EU)</th><th>AUD/USD (AU)</th><th>USD/CHF (UC)</th><th>USD/JPY (UJ)</th></tr></thead>
-                            <tbody>
-                                <tr><td>Trade Code</td><td>GU1010_BBJ (Fixed)<br>GU10F_BBJ (Floating)</td><td>EU1010_BBJ (Fixed)<br>EU10F_BBJ (Floating)</td><td>AU1010_BBJ (Fixed)<br>AU10F_BBJ (Floating)</td><td>UC1010_BBJ (Fixed)<br>UC10F_BBJ (Floating)</td><td>UJ1010_BBJ (Fixed)<br>UJ10F_BBJ (Floating)</td></tr>
-                                <tr><td>Contract Size</td><td>GBP 100.000</td><td>EUR 100.000</td><td>AUD 100.000</td><td>USD 100.000</td><td>USD 100.000</td></tr>
-                                <tr><td>Trading Hours</td><td>Summer: 07.00-03.00<br>Winter: 07.00-04.00</td><td>Summer: 07.00-03.00<br>Winter: 07.00-04.00</td><td>Summer: 07.00-03.00<br>Winter: 07.00-04.00</td><td>Summer: 07.00-03.00<br>Winter: 07.00-04.00</td><td>Summer: 07.00-03.00<br>Winter: 07.00-04.00</td></tr>
-                                <tr><td>Initial Margin (Day)</td><td>USD 1,000/lot</td><td>USD 1,000/lot</td><td>USD 1,000/lot</td><td>USD 1,000/lot</td><td>USD 1,000/lot</td></tr>
-                                <tr><td>Initial Margin (O/N)</td><td>USD 2,000/lot</td><td>USD 2,000/lot</td><td>USD 2,000/lot</td><td>USD 2,000/lot</td><td>USD 2,000/lot</td></tr>
-                                <tr><td>Maintenance Margin</td><td>70% of Initial Margin</td><td>70% of Initial Margin</td><td>70% of Initial Margin</td><td>70% of Initial Margin</td><td>70% of Initial Margin</td></tr>
-                                <tr><td>Auto Liquidation</td><td>30% of Initial Margin</td><td>30% of Initial Margin</td><td>30% of Initial Margin</td><td>30% of Initial Margin</td><td>30% of Initial Margin</td></tr>
-                                <tr><td>Facility Fee</td><td>USD 15/Lot/Side</td><td>USD 15/Lot/Side</td><td>USD 15/Lot/Side</td><td>USD 15/Lot/Side</td><td>USD 15/Lot/Side</td></tr>
-                                <tr><td>VAT (Fee)</td><td>11% of Facility Fee</td><td>11% of Facility Fee</td><td>11% of Facility Fee</td><td>11% of Facility Fee</td><td>11% of Facility Fee</td></tr>
-                                <tr><td>Rollover Fee (Buy/Sell)</td><td>USD 5/lot/night</td><td>USD 5/lot/night</td><td>USD 5/lot/night</td><td>USD 5/lot/night</td><td>USD 5/lot/night</td></tr>
-                                <tr><td>VAT (Rollover)</td><td>11% of Rollover Facility</td><td>11% of Rollover Facility</td><td>11% of Rollover Facility</td><td>11% of Rollover Facility</td><td>11% of Rollover Facility</td></tr>
-                                <tr><td>Min. Price Movement</td><td>0,0001 Points (USD 10)</td><td>0,0001 Points (USD 10)</td><td>0,0001 Points (USD 10)</td><td>0,0001 Points (USD 10)</td><td>0,0001 Points (USD 10)</td></tr>
-                                <tr><td>Spread Quote (Min)</td><td>4 point/side</td><td>4 point/side</td><td>4 point/side</td><td>4 point/side</td><td>4 point/side</td></tr>
-                                <tr><td>Range for Limit Order</td><td>20-2000 Points/pips</td><td>20-2000 Points/pips</td><td>20-2000 Points/pips</td><td>20-2000 Points/pips</td><td>20-2000 Points/pips</td></tr>
-                            </tbody>
-                        </table>
+                     <div class="bg-white p-4 md:p-6 rounded-2xl shadow-xl mt-8">
+                        <h4 class="font-bold text-xl md:text-2xl mb-6 text-gray-800">SPA: Forex</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full min-w-max responsive-table text-xs md:text-sm">
+                                <thead><tr><th>Spesifikasi</th><th>GBP/USD (GU)</th><th>EUR/USD (EU)</th><th>AUD/USD (AU)</th><th>USD/CHF (UC)</th><th>USD/JPY (UJ)</th></tr></thead>
+                                <tbody>
+                                    <tr><td data-label="Spesifikasi">Trade Code</td><td data-label="GU">GU1010_BBJ (Fixed)<br>GU10F_BBJ (Floating)</td><td data-label="EU">EU1010_BBJ (Fixed)<br>EU10F_BBJ (Floating)</td><td data-label="AU">AU1010_BBJ (Fixed)<br>AU10F_BBJ (Floating)</td><td data-label="UC">UC1010_BBJ (Fixed)<br>UC10F_BBJ (Floating)</td><td data-label="UJ">UJ1010_BBJ (Fixed)<br>UJ10F_BBJ (Floating)</td></tr>
+                                    <tr><td data-label="Spesifikasi">Contract Size</td><td data-label="GU">GBP 100.000</td><td data-label="EU">EUR 100.000</td><td data-label="AU">AUD 100.000</td><td data-label="UC">USD 100.000</td><td data-label="UJ">USD 100.000</td></tr>
+                                    <tr><td data-label="Spesifikasi">Trading Hours</td><td data-label="GU">Summer: 07.00-03.00<br>Winter: 07.00-04.00</td><td data-label="EU">Summer: 07.00-03.00<br>Winter: 07.00-04.00</td><td data-label="AU">Summer: 07.00-03.00<br>Winter: 07.00-04.00</td><td data-label="UC">Summer: 07.00-03.00<br>Winter: 07.00-04.00</td><td data-label="UJ">Summer: 07.00-03.00<br>Winter: 07.00-04.00</td></tr>
+                                    <tr><td data-label="Spesifikasi">Initial Margin (Day)</td><td data-label="GU">USD 1,000/lot</td><td data-label="EU">USD 1,000/lot</td><td data-label="AU">USD 1,000/lot</td><td data-label="UC">USD 1,000/lot</td><td data-label="UJ">USD 1,000/lot</td></tr>
+                                    <tr><td data-label="Spesifikasi">Initial Margin (O/N)</td><td data-label="GU">USD 2,000/lot</td><td data-label="EU">USD 2,000/lot</td><td data-label="AU">USD 2,000/lot</td><td data-label="UC">USD 2,000/lot</td><td data-label="UJ">USD 2,000/lot</td></tr>
+                                    <tr><td data-label="Spesifikasi">Rollover Fee (Buy/Sell)</td><td data-label="GU">USD 5/lot/night</td><td data-label="EU">USD 5/lot/night</td><td data-label="AU">USD 5/lot/night</td><td data-label="UC">USD 5/lot/night</td><td data-label="UJ">USD 5/lot/night</td></tr>
+                                    <tr><td data-label="Spesifikasi">Min. Price Movement</td><td data-label="GU">0,0001 Points (USD 10)</td><td data-label="EU">0,0001 Points (USD 10)</td><td data-label="AU">0,0001 Points (USD 10)</td><td data-label="UC">0,0001 Points (USD 10)</td><td data-label="UJ">0,0001 Points (USD 10)</td></tr>
+                                </tbody>
+                            </table>
+                         </div>
                      </div>
                 </div>
 
                 <div id="calc" class="tab-content mt-8">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div class="bg-white p-6 rounded-2xl shadow-xl space-y-4">
-                            <h4 class="font-bold text-xl text-gray-800">Contoh: Transaksi JPKSU BBJ (Daytrade)</h4>
-                            <p class="text-sm text-gray-600">Nasabah beli 3 lot di 36200. Harga turun, ia likuidasi 1 lot di 36100. Harga naik lagi, sisa 2 lot dilikuidasi di 36500.</p>
+                            <h4 class="font-bold text-lg md:text-xl text-gray-800">Contoh: Transaksi JPKSU BBJ (Daytrade)</h4>
+                            <p class="text-sm text-gray-600">Nasabah beli 3 lot di 36200, likuidasi 1 lot di 36100 (rugi), dan sisa 2 lot dilikuidasi di 36500 (untung).</p>
                             <div>
                                 <p class="font-semibold text-red-600">Sesi 1 (Rugi):</p>
-                                <code class="calc-code text-red-400">P/L = [(36100 - 36200) x $5 x 1] - ($30 + $3,3)
-= -$500 - $33,3 = -$533,3</code>
+                                <code class="calc-code text-red-400">P/L = -$533,3</code>
                             </div>
                             <div>
                                 <p class="font-semibold text-green-600">Sesi 2 (Untung):</p>
-                                <code class="calc-code text-green-400">P/L = [(36500 - 36200) x $5 x 2] - [($30 + $3,3) x 2]
-= $3000 - $66,6 = $2933,4</code>
+                                <code class="calc-code text-green-400">P/L = +$2933,4</code>
                             </div>
                             <div class="bg-blue-50 p-3 rounded-lg text-center">
                                 <p class="text-sm text-blue-800">Total Keuntungan Bersih</p>
@@ -272,11 +311,11 @@
                             </div>
                         </div>
                         <div class="bg-white p-6 rounded-2xl shadow-xl space-y-4">
-                            <h4 class="font-bold text-xl text-gray-800">Contoh: Transaksi XUL 10 (Overnight)</h4>
-                            <p class="text-sm text-gray-600">Nasabah beli 1 lot di $3175,30, lalu beli lagi 2 lot di $3160,40. Ia likuidasi 1 lot di $3170,50 (hari sama). Sisa 2 lot dilikuidasi besoknya di $3172,45.</p>
-                            <div>
+                            <h4 class="font-bold text-lg md:text-xl text-gray-800">Contoh: Transaksi XUL 10 (Overnight)</h4>
+                            <p class="text-sm text-gray-600">Nasabah melakukan beberapa transaksi beli dan likuidasi pada hari yang sama dan keesokan harinya.</p>
+                             <div>
                                 <p class="font-semibold text-green-600">Hari 1 (Untung):</p>
-                                <code class="calc-code text-green-400">P/L = [($3170,50 - $3160,40) x 100] - $33,3 = $976,7</code>
+                                <code class="calc-code text-green-400">P/L = +$976,7</code>
                             </div>
                             <div>
                                 <p class="font-semibold text-gray-600">Hari 2 (Mix) & Biaya:</p>
@@ -288,34 +327,28 @@
                             </div>
                         </div>
                          <div class="bg-white p-6 rounded-2xl shadow-xl space-y-4 lg:col-span-2">
-                            <h4 class="font-bold text-xl text-gray-800">Contoh: Transaksi Forex (Daytrade)</h4>
+                            <h4 class="font-bold text-lg md:text-xl text-gray-800">Contoh: Transaksi Forex (Daytrade)</h4>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <p class="font-semibold text-gray-700">A. Transaksi EU1010_BBJ</p>
-                                    <p class="text-sm text-gray-600 mt-2">Beli 2 lot di 1,1230. Diasumsikan fixed rate $1 = Rp 10.000.</p>
                                     <div class="mt-2">
-                                        <p class="font-semibold text-green-600 text-sm">Skenario Untung (Likuidasi di 1,1240):</p>
-                                        <code class="calc-code text-xs text-green-400">P/L = [(1,1240 - 1,1230) x 100.000 x 2] - 66,6 = $133,4</code>
-                                        <p class="text-center font-semibold text-xs text-green-600 mt-1">Untung Rp.1.334.000</p>
+                                        <p class="font-semibold text-green-600 text-sm">Skenario Untung:</p>
+                                        <code class="calc-code text-xs text-green-400">P/L = +$133,4 (Rp.1.334.000)</code>
                                     </div>
                                     <div class="mt-2">
-                                        <p class="font-semibold text-red-600 text-sm">Skenario Rugi (Likuidasi di 1,1225):</p>
-                                        <code class="calc-code text-xs text-red-400">P/L = [(1,1225 - 1,1230) x 100.000 x 2] - 66,6 = -$166,6</code>
-                                        <p class="text-center font-semibold text-xs text-red-600 mt-1">Rugi Rp.1.666.000</p>
+                                        <p class="font-semibold text-red-600 text-sm">Skenario Rugi:</p>
+                                        <code class="calc-code text-xs text-red-400">P/L = -$166,6 (Rugi Rp.1.666.000)</code>
                                     </div>
                                 </div>
                                 <div>
                                     <p class="font-semibold text-gray-700">B. Transaksi UJ1010_BBJ</p>
-                                    <p class="text-sm text-gray-600 mt-2">Jual 1 lot di 142,20. Diasumsikan fixed rate $1 = Rp 10.000.</p>
                                     <div class="mt-2">
-                                        <p class="font-semibold text-green-600 text-sm">Skenario Untung (Likuidasi di 142,05):</p>
-                                        <code class="calc-code text-xs text-green-400">P/L = [((142,20-142,05)/142,05)x100.000] - 33,3 = $64,07</code>
-                                        <p class="text-center font-semibold text-xs text-green-600 mt-1">Untung Rp 640.700</p>
+                                        <p class="font-semibold text-green-600 text-sm">Skenario Untung:</p>
+                                        <code class="calc-code text-xs text-green-400">P/L = +$64,07 (Rp 640.700)</code>
                                     </div>
                                     <div class="mt-2">
-                                        <p class="font-semibold text-red-600 text-sm">Skenario Rugi (Likuidasi di 142,27):</p>
-                                        <code class="calc-code text-xs text-red-400">P/L = [((142,20-142,27)/142,27)x100.000] - 33,3 = -$78,67</code>
-                                        <p class="text-center font-semibold text-xs text-red-600 mt-1">Rugi Rp 786.700</p>
+                                        <p class="font-semibold text-red-600 text-sm">Skenario Rugi:</p>
+                                        <code class="calc-code text-xs text-red-400">P/L = -$78,67 (Rugi Rp 786.700)</code>
                                     </div>
                                 </div>
                             </div>
@@ -326,147 +359,142 @@
         </div>
     </section>
 
-    <section id="layanan" class="py-24 bg-gray-100">
-        <div class="container mx-auto px-6">
+    <section id="layanan" class="py-20 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center">
                 <h2 class="section-title">Fasilitas dan Layanan Komprehensif</h2>
-                <p class="section-subtitle">Kami menyediakan semua yang Anda butuhkan untuk pengalaman trading yang aman, nyaman, dan terinformasi.</p>
+                <p class="section-subtitle">Kami menyediakan semua yang Anda butuhkan untuk pengalaman trading yang aman dan terinformasi.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
-                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-5"><i class="fas fa-shield-alt fa-2x"></i></div>
-                    <h3 class="text-xl font-bold mb-2">Legalitas Terjamin</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-start">
+                    <div class="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4"><i class="fas fa-shield-alt fa-2x"></i></div>
+                    <h3 class="text-lg font-bold mb-2">Legalitas Terjamin</h3>
                     <p class="text-gray-600 text-sm">Izin Bappebti, anggota BBJ dan KBI.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-5"><i class="fas fa-laptop-code fa-2x"></i></div>
-                    <h3 class="text-xl font-bold mb-2">Online Trading & Akun Demo</h3>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-start">
+                    <div class="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4"><i class="fas fa-laptop-code fa-2x"></i></div>
+                    <h3 class="text-lg font-bold mb-2">Online Trading & Akun Demo</h3>
                     <p class="text-gray-600 text-sm">Transaksi fleksibel dan akun demo untuk simulasi.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-5"><i class="fas fa-user-tie fa-2x"></i></div>
-                    <h3 class="text-xl font-bold mb-2">Wakil Pialang Profesional</h3>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-start">
+                    <div class="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4"><i class="fas fa-user-tie fa-2x"></i></div>
+                    <h3 class="text-lg font-bold mb-2">Wakil Pialang Profesional</h3>
                     <p class="text-gray-600 text-sm">Tim ahli siap membantu edukasi dan administrasi.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-5"><i class="fas fa-newspaper fa-2x"></i></div>
-                    <h3 class="text-xl font-bold mb-2">Riset & Analisa</h3>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-start">
+                    <div class="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4"><i class="fas fa-newspaper fa-2x"></i></div>
+                    <h3 class="text-lg font-bold mb-2">Riset & Analisa</h3>
                     <p class="text-gray-600 text-sm">Akses portal berita 24 jam ewfpro.com untuk analisa.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-5"><i class="fas fa-university fa-2x"></i></div>
-                    <h3 class="text-xl font-bold mb-2">Segregated Account</h3>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-start">
+                    <div class="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4"><i class="fas fa-university fa-2x"></i></div>
+                    <h3 class="text-lg font-bold mb-2">Segregated Account</h3>
                     <p class="text-gray-600 text-sm">Dana nasabah di rekening terpisah yang disetujui Bappebti.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-5"><i class="fas fa-file-invoice-dollar fa-2x"></i></div>
-                    <h3 class="text-xl font-bold mb-2">Laporan Transaksi Harian</h3>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-start">
+                    <div class="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4"><i class="fas fa-file-invoice-dollar fa-2x"></i></div>
+                    <h3 class="text-lg font-bold mb-2">Laporan Transaksi Harian</h3>
                     <p class="text-gray-600 text-sm">Rekap harian untuk memantau ekuitas dan posisi.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-5"><i class="fas fa-hand-holding-usd fa-2x"></i></div>
-                    <h3 class="text-xl font-bold mb-2">Penarikan Dana Cepat</h3>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-start">
+                    <div class="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4"><i class="fas fa-hand-holding-usd fa-2x"></i></div>
+                    <h3 class="text-lg font-bold mb-2">Penarikan Dana Cepat</h3>
                     <p class="text-gray-600 text-sm">Proses withdrawal diupayakan selesai dalam T+1.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-5"><i class="fas fa-lock fa-2x"></i></div>
-                    <h3 class="text-xl font-bold mb-2">Keamanan 2FA (OTP)</h3>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-start">
+                    <div class="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4"><i class="fas fa-lock fa-2x"></i></div>
+                    <h3 class="text-lg font-bold mb-2">Keamanan 2FA (OTP)</h3>
                     <p class="text-gray-600 text-sm">Login aman dengan One-Time Password (OTP).</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-5"><i class="fas fa-gavel fa-2x"></i></div>
-                    <h3 class="text-xl font-bold mb-2">Sarana Penyelesaian Perselisihan</h3>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-start">
+                    <div class="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4"><i class="fas fa-gavel fa-2x"></i></div>
+                    <h3 class="text-lg font-bold mb-2">Sarana Penyelesaian Perselisihan</h3>
                     <p class="text-gray-600 text-sm">Sesuai Peraturan Bappebti Nomor 4 Tahun 2022.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-5"><i class="fas fa-search-dollar fa-2x"></i></div>
-                    <h3 class="text-xl font-bold mb-2">Program SITNa</h3>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-start">
+                    <div class="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4"><i class="fas fa-search-dollar fa-2x"></i></div>
+                    <h3 class="text-lg font-bold mb-2">Program SITNa</h3>
                     <p class="text-gray-600 text-sm">Monitor transaksi yang tercatat di Bursa dan Kliring.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="memulai" class="py-24">
-        <div class="container mx-auto px-6">
+    <section id="memulai" class="py-20 md:py-24">
+        <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center">
                 <h2 class="section-title">Prosedur Pembukaan Rekening Online</h2>
                 <p class="section-subtitle">Ikuti prosedur pembukaan rekening online kami yang cepat, mudah, dan aman.</p>
             </div>
-            <div class="max-w-2xl mx-auto">
-                <div class="relative pl-8 timeline-path">
-                    <div class="relative mb-12 timeline-item"><div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500"><span class="absolute -left-14 top-0 text-2xl font-bold text-blue-500 bg-blue-100 rounded-full w-10 h-10 flex items-center justify-center">1</span><h3 class="font-bold text-lg text-gray-800">Akses Website</h3><p class="text-gray-600">Kunjungi website resmi kami di www.equityworld-futures.com.</p></div></div>
-                    <div class="relative mb-12 timeline-item"><div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500"><span class="absolute -left-14 top-0 text-2xl font-bold text-blue-500 bg-blue-100 rounded-full w-10 h-10 flex items-center justify-center">2</span><h3 class="font-bold text-lg text-gray-800">Registrasi & Simulasi</h3><p class="text-gray-600">Input data untuk Akun Demo dan lakukan simulasi transaksi.</p></div></div>
-                    <div class="relative mb-12 timeline-item"><div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500"><span class="absolute -left-14 top-0 text-2xl font-bold text-blue-500 bg-blue-100 rounded-full w-10 h-10 flex items-center justify-center">3</span><h3 class="font-bold text-lg text-gray-800">Input Dokumen</h3><p class="text-gray-600">Lengkapi Dokumen Pemberitahuan Adanya Risiko (DPAR), Perjanjian Pemberian Amanat (PPA), dan data pendukung (KTP).</p></div></div>
-                    <div class="relative mb-12 timeline-item"><div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500"><span class="absolute -left-14 top-0 text-2xl font-bold text-blue-500 bg-blue-100 rounded-full w-10 h-10 flex items-center justify-center">4</span><h3 class="font-bold text-lg text-gray-800">Verifikasi Data</h3><p class="text-gray-600">Wakil Pialang akan memverifikasi data pribadi dan penyetoran dana Anda ke rekening terpisah.</p></div></div>
-                    <div class="relative mb-12 timeline-item"><div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500"><span class="absolute -left-14 top-0 text-2xl font-bold text-blue-500 bg-blue-100 rounded-full w-10 h-10 flex items-center justify-center">5</span><h3 class="font-bold text-lg text-gray-800">Proses Registrasi</h3><p class="text-gray-600">Pialang akan memproses registrasi rekening Anda setelah semua terverifikasi.</p></div></div>
-                    <div class="relative timeline-item"><div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500"><span class="absolute -left-14 top-0 text-2xl font-bold text-blue-500 bg-blue-100 rounded-full w-10 h-10 flex items-center justify-center">6</span><h3 class="font-bold text-lg text-gray-800">Aktivasi Akun</h3><p class="text-gray-600">Pialang melakukan aktivasi dan akun Anda siap untuk trading!</p></div></div>
+            <div class="max-w-md mx-auto">
+                <div class="relative pl-12 timeline-path">
+                    <div class="relative mb-10 timeline-item"><div class="bg-white p-5 rounded-xl shadow-lg border-l-4 border-blue-500"><h3 class="font-bold text-lg text-gray-800">1. Akses Website</h3><p class="text-gray-600 text-sm">Kunjungi website resmi kami di www.equityworld-futures.com.</p></div></div>
+                    <div class="relative mb-10 timeline-item"><div class="bg-white p-5 rounded-xl shadow-lg border-l-4 border-blue-500"><h3 class="font-bold text-lg text-gray-800">2. Registrasi & Simulasi</h3><p class="text-gray-600 text-sm">Input data untuk Akun Demo dan lakukan simulasi transaksi.</p></div></div>
+                    <div class="relative mb-10 timeline-item"><div class="bg-white p-5 rounded-xl shadow-lg border-l-4 border-blue-500"><h3 class="font-bold text-lg text-gray-800">3. Input Dokumen</h3><p class="text-gray-600 text-sm">Lengkapi Dokumen Pemberitahuan Adanya Risiko (DPAR), Perjanjian Pemberian Amanat (PPA), dan data pendukung (KTP).</p></div></div>
+                    <div class="relative mb-10 timeline-item"><div class="bg-white p-5 rounded-xl shadow-lg border-l-4 border-blue-500"><h3 class="font-bold text-lg text-gray-800">4. Verifikasi Data</h3><p class="text-gray-600 text-sm">Wakil Pialang akan memverifikasi data pribadi dan penyetoran dana Anda ke rekening terpisah.</p></div></div>
+                    <div class="relative mb-10 timeline-item"><div class="bg-white p-5 rounded-xl shadow-lg border-l-4 border-blue-500"><h3 class="font-bold text-lg text-gray-800">5. Proses Registrasi</h3><p class="text-gray-600 text-sm">Pialang akan memproses registrasi rekening Anda setelah semua terverifikasi.</p></div></div>
+                    <div class="relative timeline-item"><div class="bg-white p-5 rounded-xl shadow-lg border-l-4 border-blue-500"><h3 class="font-bold text-lg text-gray-800">6. Aktivasi Akun</h3><p class="text-gray-600 text-sm">Pialang melakukan aktivasi dan akun Anda siap untuk trading!</p></div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="rekening" class="py-24 bg-gray-100">
-        <div class="container mx-auto px-6">
+    <section id="rekening" class="py-20 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center">
                 <h2 class="section-title">Rekening Terpisah (Segregated Account)</h2>
-                <p class="section-subtitle">Dana Anda aman bersama kami di rekening terpisah yang telah disetujui secara resmi oleh BAPPEBTI.</p>
+                <p class="section-subtitle">Dana Anda aman di rekening terpisah yang disetujui BAPPEBTI.</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                <div class="card p-8">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center"><i class="fas fa-money-bill-wave text-blue-600 mr-3"></i> Rekening IDR</h3>
-                    <div class="space-y-4 text-gray-700">
-                        <p class="border-b pb-2"><strong>BCA (035 310 982 8):</strong> Bank BCA Sudirman, Jakarta</p>
-                        <p class="border-b pb-2"><strong>CIMB NIAGA (809 50 50509 00):</strong> Bank CIMB NIAGA Gajahmada, Jakarta</p>
-                        <p class="border-b pb-2"><strong>BNI (017 500 1902):</strong> Bank BNI Gambir, Jakarta</p>
-                        <p class="border-b pb-2"><strong>Mandiri (122 000 665 3045):</strong> Bank Mandiri Imam Bonjol, Jakarta</p>
+                <div class="card p-6 md:p-8">
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6 flex items-center"><i class="fas fa-money-bill-wave text-blue-600 mr-3"></i> Rekening IDR</h3>
+                    <div class="space-y-3 text-gray-700 text-sm md:text-base">
+                        <p><strong>BCA (035 310 982 8):</strong> Bank BCA Sudirman, Jakarta</p>
+                        <p><strong>CIMB NIAGA (809 50 50509 00):</strong> Bank CIMB NIAGA Gajahmada, Jakarta</p>
+                        <p><strong>BNI (017 500 1902):</strong> Bank BNI Gambir, Jakarta</p>
+                        <p><strong>Mandiri (122 000 665 3045):</strong> Bank Mandiri Imam Bonjol, Jakarta</p>
                         <p><strong>Bank Artha Graha (107 996 4391):</strong> Bank Artha Graha KPO Sudirman, Jakarta</p>
-                        <p class="text-sm text-gray-500 mt-4">a.n PT Equityworld Futures</p>
+                        <p class="text-xs text-gray-500 mt-4">a.n PT Equityworld Futures</p>
                     </div>
                 </div>
-                <div class="card p-8">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center"><i class="fas fa-dollar-sign text-green-600 mr-4"></i> Rekening USD</h3>
-                    <div class="space-y-4 text-gray-700">
-                        <p class="border-b pb-2"><strong>BCA (035 313 815 1):</strong> Bank BCA Sudirman, Jakarta</p>
-                        <p class="border-b pb-2"><strong>CIMB NIAGA (809 63 63631 40):</strong> Bank CIMB NIAGA Gajahmada, Jakarta</p>
-                        <p class="border-b pb-2"><strong>BNI (017 501 9636):</strong> Bank BNI Gambir, Jakarta</p>
+                <div class="card p-6 md:p-8">
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6 flex items-center"><i class="fas fa-dollar-sign text-green-600 mr-4"></i> Rekening USD</h3>
+                    <div class="space-y-3 text-gray-700 text-sm md:text-base">
+                        <p><strong>BCA (035 313 815 1):</strong> Bank BCA Sudirman, Jakarta</p>
+                        <p><strong>CIMB NIAGA (809 63 63631 40):</strong> Bank CIMB NIAGA Gajahmada, Jakarta</p>
+                        <p><strong>BNI (017 501 9636):</strong> Bank BNI Gambir, Jakarta</p>
                         <p><strong>Mandiri (122 000 665 3060):</strong> Bank Mandiri Imam Bonjol, Jakarta</p>
-                         <p class="text-sm text-gray-500 mt-4">a.n PT Equityworld Futures</p>
+                         <p class="text-xs text-gray-500 mt-4">a.n PT Equityworld Futures</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="kontak" class="py-24">
-        <div class="container mx-auto px-6">
+    <section id="kontak" class="py-20 md:py-24">
+        <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center">
                 <h2 class="section-title">Alamat Kantor Kami</h2>
-                <p class="section-subtitle">Kami hadir di berbagai kota besar di Indonesia, siap melayani Anda.</p>
+                <p class="section-subtitle">Kami hadir di berbagai kota besar di Indonesia.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card p-6"><h3 class="font-bold text-lg mb-3 flex items-center"><i class="fas fa-building mr-3 text-blue-600"></i> Kantor Pusat: Jakarta</h3><p class="text-gray-600 text-sm">Sahid Sudirman Center Lt. 9 & 21, Jl. Jend. Sudirman No.86, Jakarta Pusat 10220</p><p class="text-gray-600 mt-3 text-sm"><i class="fas fa-phone mr-2"></i>+62 21 27889280</p></div>
-                <div class="card p-6"><h3 class="font-bold text-lg mb-3 flex items-center"><i class="fas fa-map-marker-alt mr-3 text-blue-600"></i> Surabaya Trillium</h3><p class="text-gray-600 text-sm">Trillium Office & Residence, Lt.2 & 3, Jl. Pemuda No. 108-116, Surabaya 60271</p><p class="text-gray-600 mt-3 text-sm"><i class="fas fa-phone mr-2"></i>+62 31 6000 3788</p></div>
-                <div class="card p-6"><h3 class="font-bold text-lg mb-3 flex items-center"><i class="fas fa-map-marker-alt mr-3 text-blue-600"></i> Surabaya Praxis</h3><p class="text-gray-600 text-sm">Gedung Praxis Lt.5 Unit No.5p. 33,35,36, Jl. Sono Kembang 4-6, Surabaya 60271</p><p class="text-gray-600 mt-3 text-sm"><i class="fas fa-phone mr-2"></i>031-99255088</p></div>
-                <div class="card p-6"><h3 class="font-bold text-lg mb-3 flex items-center"><i class="fas fa-map-marker-alt mr-3 text-blue-600"></i> Semarang</h3><p class="text-gray-600 text-sm">Rukan Pemuda Mas, Blok A Kav. 12-13, Jl. Pemuda No. 150, Semarang 50132</p><p class="text-gray-600 mt-3 text-sm"><i class="fas fa-phone mr-2"></i>+62 24 3520226</p></div>
-                <div class="card p-6"><h3 class="font-bold text-lg mb-3 flex items-center"><i class="fas fa-map-marker-alt mr-3 text-blue-600"></i> Manado</h3><p class="text-gray-600 text-sm">Kompleks Ruko Mega Mas Blok 1 D1 No. 24-25, Jl. Piere Tendean, Manado 95111</p><p class="text-gray-600 mt-3 text-sm"><i class="fas fa-phone mr-2"></i>+62 431 879618</p></div>
-                <div class="card p-6"><h3 class="font-bold text-lg mb-3 flex items-center"><i class="fas fa-map-marker-alt mr-3 text-blue-600"></i> Cirebon</h3><p class="text-gray-600 text-sm">Perkantoran CSB Mall, Yellow Ribbon 15-18, Jl. DR.Cipto Mangunkusumo, Cirebon 45131</p><p class="text-gray-600 mt-3 text-sm"><i class="fas fa-phone mr-2"></i>0231-8291700</p></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card p-6"><h3 class="font-bold text-lg mb-2"><i class="fas fa-building mr-2 text-blue-600"></i> Kantor Pusat: Jakarta</h3><p class="text-gray-600 text-sm">Sahid Sudirman Center Lt. 9 & 21, Jl. Jend. Sudirman No.86, Jakarta Pusat 10220</p></div>
+                <div class="card p-6"><h3 class="font-bold text-lg mb-2"><i class="fas fa-map-marker-alt mr-2 text-blue-600"></i> Surabaya Trillium</h3><p class="text-gray-600 text-sm">Trillium Office & Residence, Lt.2 & 3, Jl. Pemuda No. 108-116, Surabaya 60271</p></div>
+                <div class="card p-6"><h3 class="font-bold text-lg mb-2"><i class="fas fa-map-marker-alt mr-2 text-blue-600"></i> Surabaya Praxis</h3><p class="text-gray-600 text-sm">Gedung Praxis Lt.5 Unit No.5p. 33,35,36, Jl. Sono Kembang 4-6, Surabaya 60271</p></div>
+                <div class="card p-6"><h3 class="font-bold text-lg mb-2"><i class="fas fa-map-marker-alt mr-2 text-blue-600"></i> Semarang</h3><p class="text-gray-600 text-sm">Rukan Pemuda Mas, Blok A Kav. 12-13, Jl. Pemuda No. 150, Semarang 50132</p></div>
+                <div class="card p-6"><h3 class="font-bold text-lg mb-2"><i class="fas fa-map-marker-alt mr-2 text-blue-600"></i> Manado</h3><p class="text-gray-600 text-sm">Kompleks Ruko Mega Mas Blok 1 D1 No. 24-25, Jl. Piere Tendean, Manado 95111</p></div>
+                <div class="card p-6"><h3 class="font-bold text-lg mb-2"><i class="fas fa-map-marker-alt mr-2 text-blue-600"></i> Cirebon</h3><p class="text-gray-600 text-sm">Perkantoran CSB Mall, Yellow Ribbon 15-18, Jl. DR.Cipto Mangunkusumo, Cirebon 45131</p></div>
             </div>
         </div>
     </section>
 
     <footer class="bg-gray-800 text-white">
-        <div class="container mx-auto px-6 py-12">
-            <div class="text-center mb-8">
-                <a href="#" class="text-2xl font-bold text-white flex items-center justify-center"><i class="fas fa-chart-line text-blue-500 mr-3"></i><span>Equityworld Futures</span></a>
-                <p class="mt-4 text-gray-300">Website Resmi: <a href="http://www.equityworld-futures.com" target="_blank" class="hover:text-blue-400 underline">www.equityworld-futures.com</a></p>
-            </div>
-            
-            <div class="border-t border-gray-700 pt-8 mt-8">
+        <div class="container mx-auto px-4 sm:px-6 py-12">
+            <div class="border-t border-gray-700 pt-8">
                 <div class="max-w-4xl mx-auto text-center">
                     <h4 class="font-semibold text-yellow-400 mb-2">Peringatan Risiko (Risk Disclosure)</h4>
                     <p class="text-xs text-gray-400">
-                        Seluruh isi didalam brosur ini adalah bahan informasi. Keputusan untuk melakukan transaksi sepenuhnya tanggung jawab pembaca. Investasi pada Perdagangan Berjangka mengandung risiko kerugian yang tinggi. Calon nasabah wajib mempelajari tentang Perdagangan Berjangka dan wajib memahami isi dokumen Pemberitahuan Adanya Risiko.
+                        Investasi pada Perdagangan Berjangka mengandung risiko kerugian yang tinggi. Calon nasabah wajib mempelajari dan memahami isi dokumen Pemberitahuan Adanya Risiko. Keputusan transaksi sepenuhnya tanggung jawab nasabah.
                     </p>
                 </div>
             </div>
@@ -479,15 +507,18 @@
 
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        
+        const openMenu = () => mobileMenu.classList.remove('hidden');
+        const closeMenu = () => mobileMenu.classList.add('hidden');
+
+        mobileMenuButton.addEventListener('click', openMenu);
+        closeMenuButton.addEventListener('click', closeMenu);
+        
         const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
-        for (let i = 0; i < mobileMenuLinks.length; i++) {
-            mobileMenuLinks[i].addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
+        for (let link of mobileMenuLinks) {
+            link.addEventListener('click', closeMenu);
         }
         
         const tabButtons = document.querySelectorAll('.tab-button');
